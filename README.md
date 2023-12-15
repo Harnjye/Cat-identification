@@ -1,5 +1,5 @@
 # Cat-identification
-1. Make sure you have pythonInstall Python 3.8+ installed. Install python dependencies:
+1. Make sure you have Python 3.8+ installed. Install python dependencies:
 ```
 pip install -r requirements.txt
 ```
