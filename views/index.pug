@@ -1,0 +1,77 @@
+extends layout
+
+block content
+  header
+    h1 Cat identification
+
+  body
+    form#myform(action='/myaction' method='post' enctype='multipart/form-data')
+      .form-container
+        input#selectedBreed(type='hidden' name='selectedBreed') 
+        
+      h1 Step One: Upload Image
+      .image-upload
+        label(for='userImage')
+          img#uploadDisplay(src='/images/Tchaikovsky.jpeg')
+          input#userImage(name='userImage' type='file' accept='image/png, image/jpeg')
+        
+      h1 Step Two: Choose Wanted Breed
+      #selectedImageContainer
+        img#selectedImage(src='/images/American Shorthair.jpg' data-val='American Shorthair' name='catBreed' alt='Selected Image')
+
+      #imageGallery
+        div.galleryItem
+            img.galleryImage(src='/images/Abyssinian.jpg' data-val='Abyssinian' alt='Abyssinian' onclick='selectImage(this)')
+            span.galleryName Abyssinian
+        div.galleryItem
+            img.galleryImage(src='/images/American Bobtail.jpg' data-val='American Bobtail' alt='American Bobtail' onclick='selectImage(this)')
+            span.galleryName American Bobtail
+        div.galleryItem
+            img.galleryImage(src='/images/American Curl.jpg' data-val='American Curl' alt='American Curl' onclick='selectImage(this)')
+            span.galleryName American Curl
+        div.galleryItem
+            img.galleryImage(src='/images/American Shorthair.jpg' data-val='Domestic Short Hair' alt='Domestic Short Hair' onclick='selectImage(this)')
+            span.galleryName Domestic ShortHair
+        div.galleryItem
+            img.galleryImage(src='/images/Applehead Siamese.jpg' data-val='Siamese' alt='Siamese' onclick='selectImage(this)')
+            span.galleryName Siamese
+        div.galleryItem
+            img.galleryImage(src='/images/Bengal.jpg' data-val='Bengal' alt='Bengal' onclick='selectImage(this)')
+            span.galleryName Bengal
+        div.galleryItem
+            img.galleryImage(src='/images/Bombay.jpg' data-val='Bombay' alt='Bombay' onclick='selectImage(this)')
+            span.galleryName Bombay
+        div.galleryItem
+            img.galleryImage(src='/images/Calico.jpg' data-val='Calico' alt='Calico' onclick='selectImage(this)')
+            span.galleryName Calico
+        div.galleryItem
+            img.galleryImage(src='/images/Korat.jpg' data-val='Korat' alt='Korat' onclick='selectImage(this)')
+            span.galleryName Korat
+        div.galleryItem
+            img.galleryImage(src='/images/Norwegian Forest.jpg' data-val='Norwegian Forest' alt='Norwegian Forest' onclick='selectImage(this)')
+            span.galleryName Norwegian Forest
+        div.galleryItem
+            img.galleryImage(src='/images/Persian.jpg' data-val='Persian' alt='Persian' onclick='selectImage(this)')
+            span.galleryName Persian 
+        div.galleryItem
+            img.galleryImage(src='/images/Ragdoll.jpg' data-val='Ragdoll' alt='Ragdoll' onclick='selectImage(this)')
+            span.galleryName Ragdoll
+
+      h1 Step Three: Get Result
+      button.btn(type='submit')
+        i.fa.fa-caret-right
+      
+
+  script.
+    function selectImage(img) {
+      document.getElementById('selectedImage').src = img.src;
+      document.getElementById('selectedBreed').value = img.getAttribute('data-val');
+    }
+
+  script.
+    let input = document.getElementById("userImage");
+    let imageName = document.getElementById("imageName");
+    input.addEventListener("change", () => {
+      let inputImage = document.querySelector("input[type=file]").files[0];
+      imageName.innerText = inputImage.name;
+    });

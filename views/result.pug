@@ -1,0 +1,75 @@
+extend layout 
+
+block content
+  header
+    h1 Analysis Result
+    button#backToMain(onclick="document.location='/'") Main Page
+
+  section
+    div.section-content
+      if images.length > 0
+        h1
+          | Cats Detected 
+          i.fa.fa-check(style='color: green;')
+      else
+        h1
+          | Cats Detected 
+          i.fa.fa-close(style='color: red;')
+
+      each image, label in image_to_show
+        img#resultImage(src=image)
+        h2= labels[label]
+      
+
+  if images.length > 0
+    section
+      div.section-content
+        if labels.length == 1
+          h1 
+            | Has Only One Cat 
+            i.fa.fa-check(style='color: green;')  
+        else
+          h1 
+            | Has Only One Cat 
+            i.fa.fa-close(style='color: red;')
+
+        h2
+          | There is 
+          = labels.length
+          |  cats in the pictures.
+
+  if labels.length == 1
+    section
+      div.section-content
+        if labels && labels.length == 1 && selectedBreed == labels[0]
+          h1 
+            | Same Breed as wanted 
+            i.fa.fa-check(style='color: green;')  
+          h2 
+            = labels[0]
+            |  = 
+            = selectedBreed
+        else
+          h1 
+            | Same Breed as wanted 
+            i.fa.fa-close(style='color: red;')  
+          h2 
+            = labels[0]
+            |  ≠ 
+            = selectedBreed
+
+  section
+    div.section-content
+      if labels && labels.length == 1 && selectedBreed == labels[0]
+        h1
+          | Result 
+          i.fa.fa-check(style='color: green;') 
+        i.fa.fa-unlock(style='color: green;') 
+        h2(style='color: green;') food cover remove!
+      else
+        h1
+          | Result 
+          i.fa.fa-close(style='color: red;')
+        i.fa.fa-lock(style='color: red;')
+        h2(style='color: red;') food cover stay close!
+        
