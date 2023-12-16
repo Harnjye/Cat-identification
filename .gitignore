@@ -1,5 +1,4 @@
 node_modules/*
-bin/*
 *.pyc
 *.DS_Store
 *.tar
